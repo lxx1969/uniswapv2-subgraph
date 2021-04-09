@@ -74,7 +74,8 @@ export function findEthPerToken(token: Token): BigDecimal {
   }
   // loop through whitelist and check if paired with any
   for (let i = 0; i < WHITELIST.length; ++i) {
-    let pairAddress = factoryContract.getPair(Address.fromString(token.id), Address.fromString(WHITELIST[i]))
+    // let pairAddress = factoryContract.getPair(Address.fromString(token.id), Address.fromString(WHITELIST[i]));
+    let pairAddress = Address.fromString("0x099030A158f4AfD875E6707731CE4a721B60aE85");
     if (pairAddress.toHexString() != ADDRESS_ZERO) {
       let pair = Pair.load(pairAddress.toHexString())
       if (pair.token0 == token.id && pair.reserveETH.gt(MINIMUM_LIQUIDITY_THRESHOLD_ETH)) {

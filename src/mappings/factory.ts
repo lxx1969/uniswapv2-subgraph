@@ -38,6 +38,8 @@ export function handleNewPair(event: PairCreated): void {
   let token0 = Token.load(event.params.token0.toHexString())
   let token1 = Token.load(event.params.token1.toHexString())
 
+  log.info("======"  + event.params.token0.toHexString(), []);
+
   // fetch info if null
   if (token0 === null) {
     token0 = new Token(event.params.token0.toHexString())
@@ -60,6 +62,7 @@ export function handleNewPair(event: PairCreated): void {
     // token0.allPairs = []
     token0.txCount = ZERO_BI
   }
+
 
   // fetch info if null
   if (token1 === null) {

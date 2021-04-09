@@ -5,8 +5,6 @@ import { ERC20SymbolBytes } from '../types/Factory/ERC20SymbolBytes'
 import { ERC20NameBytes } from '../types/Factory/ERC20NameBytes'
 import { User, Bundle, Token, LiquidityPosition, LiquidityPositionSnapshot, Pair } from '../types/schema'
 import { Factory as FactoryContract } from '../types/templates/Pair/Factory'
-import {getContract} from '../../function/utils'
-import ERC20json from '../../abis/ERC20.json'
 
 export const ADDRESS_ZERO = '0x0000000000000000000000000000000000000000'
 export const FACTORY_ADDRESS = '0x5C69bEe701ef814a2B6a3EDD4B1652CB9cc5aA6f'
@@ -56,133 +54,96 @@ export function isNullEthValue(value: string): boolean {
 }
 
 
-
-
-
 export function fetchTokenSymbol(tokenAddress: Address): string {
-  // hard coded overrides
-  if (tokenAddress.toHexString() == '0xe0b7927c4af23765cb51314a0e0521a9645f0e2a') {
-    return 'DGD'
-  }
-  if (tokenAddress.toHexString() == '0x7fc66500c84a76ad7e9c93437bfc5ac33e2ddae9') {
-    return 'AAVE'
-  }
+  return 'symbol-';
 
-  // let contract = getContract(tokenAddress,ERC20json)
-log.info("symbol before =========================================================",[])
-  // let symbolValue = contract.symbol()
-  // log.info("symbol after ========================================================="+symbolValue,[])
+  // // hard coded overrides
+  // if (tokenAddress.toHexString() == '0xe0b7927c4af23765cb51314a0e0521a9645f0e2a') {
+  //   return 'DGD'
+  // }
+  // if (tokenAddress.toHexString() == '0x7fc66500c84a76ad7e9c93437bfc5ac33e2ddae9') {
+  //   return 'AAVE'
+  // }
   
-  
+  // let contract = ERC20.bind(tokenAddress)
+  // let contractSymbolBytes = ERC20SymbolBytes.bind(tokenAddress)
+
+  // // try types string and bytes32 for symbol
+  // let symbolValue = 'unknown'
+  // let symbolResult = contract.try_symbol()
+  // if (symbolResult.reverted) {
+  //   let symbolResultBytes = contractSymbolBytes.try_symbol()
+  //   if (!symbolResultBytes.reverted) {
+  //     // for broken pairs that have no symbol function exposed
+  //     if (!isNullEthValue(symbolResultBytes.value.toHexString())) {
+  //       symbolValue = symbolResultBytes.value.toString()
+  //     }
+  //   }
+  // } else {
+  //   symbolValue = symbolResult.value
+  // }
+
   // return symbolValue
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// export function fetchTokenSymbol(tokenAddress: Address): string {
-//   // hard coded overrides
-//   if (tokenAddress.toHexString() == '0xe0b7927c4af23765cb51314a0e0521a9645f0e2a') {
-//     return 'DGD'
-//   }
-//   if (tokenAddress.toHexString() == '0x7fc66500c84a76ad7e9c93437bfc5ac33e2ddae9') {
-//     return 'AAVE'
-//   }
-
-//   let contract = ERC20.bind(tokenAddress)
-//   let contractSymbolBytes = ERC20SymbolBytes.bind(tokenAddress)
-
-//   // try types string and bytes32 for symbol
-//   let symbolValue = 'unknown'
-//   let symbolResult = contract.try_symbol()
-//   if (symbolResult.reverted) {
-//     let symbolResultBytes = contractSymbolBytes.try_symbol()
-//     if (!symbolResultBytes.reverted) {
-//       // for broken pairs that have no symbol function exposed
-//       if (!isNullEthValue(symbolResultBytes.value.toHexString())) {
-//         symbolValue = symbolResultBytes.value.toString()
-//       }
-//     }
-//   } else {
-//     symbolValue = symbolResult.value
-//   }
-
-//   return symbolValue
-// }
-
 export function fetchTokenName(tokenAddress: Address): string {
-  // hard coded overrides
-  if (tokenAddress.toHexString() == '0xe0b7927c4af23765cb51314a0e0521a9645f0e2a') {
-    return 'DGD'
-  }
-  if (tokenAddress.toHexString() == '0x7fc66500c84a76ad7e9c93437bfc5ac33e2ddae9') {
-    return 'Aave Token'
-  }
+  return 'tokenname-';
 
-  let contract = ERC20.bind(tokenAddress)
-  let contractNameBytes = ERC20NameBytes.bind(tokenAddress)
+  // // hard coded overrides
+  // if (tokenAddress.toHexString() == '0xe0b7927c4af23765cb51314a0e0521a9645f0e2a') {
+  //   return 'DGD'
+  // }
+  // if (tokenAddress.toHexString() == '0x7fc66500c84a76ad7e9c93437bfc5ac33e2ddae9') {
+  //   return 'Aave Token'
+  // }
 
-  // try types string and bytes32 for name
-  let nameValue = 'unknown'
-  let nameResult = contract.try_name()
-  if (nameResult.reverted) {
-    let nameResultBytes = contractNameBytes.try_name()
-    if (!nameResultBytes.reverted) {
-      // for broken exchanges that have no name function exposed
-      if (!isNullEthValue(nameResultBytes.value.toHexString())) {
-        nameValue = nameResultBytes.value.toString()
-      }
-    }
-  } else {
-    nameValue = nameResult.value
-  }
+  // let contract = ERC20.bind(tokenAddress)
+  // let contractNameBytes = ERC20NameBytes.bind(tokenAddress)
 
-  return nameValue
+  // // try types string and bytes32 for name
+  // let nameValue = 'unknown'
+  // let nameResult = contract.try_name()
+  // if (nameResult.reverted) {
+  //   let nameResultBytes = contractNameBytes.try_name()
+  //   if (!nameResultBytes.reverted) {
+  //     // for broken exchanges that have no name function exposed
+  //     if (!isNullEthValue(nameResultBytes.value.toHexString())) {
+  //       nameValue = nameResultBytes.value.toString()
+  //     }
+  //   }
+  // } else {
+  //   nameValue = nameResult.value
+  // }
+
+  // return nameValue
 }
 
 export function fetchTokenTotalSupply(tokenAddress: Address): BigInt {
-  let contract = ERC20.bind(tokenAddress)
-  let totalSupplyValue = null
-  let totalSupplyResult = contract.try_totalSupply()
-  if (!totalSupplyResult.reverted) {
-    totalSupplyValue = totalSupplyResult as i32
-  }
-  return BigInt.fromI32(totalSupplyValue as i32)
+  return BigInt.fromI32(1);
+  // let contract = ERC20.bind(tokenAddress)
+  // let totalSupplyValue = null
+  // let totalSupplyResult = contract.try_totalSupply()
+  // if (!totalSupplyResult.reverted) {
+  //   totalSupplyValue = totalSupplyResult as i32
+  // }
+  // return BigInt.fromI32(totalSupplyValue as i32)
 }
 
 export function fetchTokenDecimals(tokenAddress: Address): BigInt {
-  // hardcode overrides
-  if (tokenAddress.toHexString() == '0x7fc66500c84a76ad7e9c93437bfc5ac33e2ddae9') {
-    return BigInt.fromI32(18)
-  }
+  return BigInt.fromI32(18);
+  // // hardcode overrides
+  // if (tokenAddress.toHexString() == '0x7fc66500c84a76ad7e9c93437bfc5ac33e2ddae9') {
+  //   return BigInt.fromI32(18)
+  // }
 
-  let contract = ERC20.bind(tokenAddress)
-  // try types uint8 for decimals
-  let decimalValue = null
-  let decimalResult = contract.try_decimals()
-  if (!decimalResult.reverted) {
-    decimalValue = decimalResult.value
-  }
-  return BigInt.fromI32(decimalValue as i32)
+  // let contract = ERC20.bind(tokenAddress)
+  // // try types uint8 for decimals
+  // let decimalValue = null
+  // let decimalResult = contract.try_decimals()
+  // if (!decimalResult.reverted) {
+  //   decimalValue = decimalResult.value
+  // }
+  // return BigInt.fromI32(decimalValue as i32)
 }
 
 export function createLiquidityPosition(exchange: Address, user: Address): LiquidityPosition {
