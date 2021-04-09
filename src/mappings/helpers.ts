@@ -5,7 +5,7 @@ import { ERC20SymbolBytes } from '../types/Factory/ERC20SymbolBytes'
 import { ERC20NameBytes } from '../types/Factory/ERC20NameBytes'
 import { User, Bundle, Token, LiquidityPosition, LiquidityPositionSnapshot, Pair } from '../types/schema'
 import { Factory as FactoryContract } from '../types/templates/Pair/Factory'
-import {getContract} from '../../function/utils'
+// import {getContract} from '../../function/utils'
 import ERC20json from '../../abis/ERC20.json'
 
 export const ADDRESS_ZERO = '0x0000000000000000000000000000000000000000'
@@ -68,13 +68,13 @@ export function fetchTokenSymbol(tokenAddress: Address): string {
     return 'AAVE'
   }
 
-  let contract = getContract(tokenAddress,ERC20json)
+  // let contract = getContract(tokenAddress,ERC20json)
 log.info("symbol before =========================================================",[])
-  let symbolValue = contract.symbol()
-  log.info("symbol after ========================================================="+symbolValue,[])
+  // let symbolValue = contract.symbol()
+  // log.info("symbol after ========================================================="+symbolValue,[])
   
   
-  return symbolValue
+  // return symbolValue
 }
 
 
