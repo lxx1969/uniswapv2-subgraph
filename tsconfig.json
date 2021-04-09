@@ -1,7 +1,7 @@
 {
   "extends": "./node_modules/@graphprotocol/graph-ts/tsconfig.json",
   "compilerOptions": {
-    "types": ["@graphprotocol/graph-ts","node"],
+    "types": ["@graphprotocol/graph-ts","react-spring","jest"],
     "esModuleInterop": true,
     "resolveJsonModule": true
   }
