@@ -21,6 +21,7 @@
     "eslint": "^6.2.2",
     "eslint-config-prettier": "^6.1.0",
     "prettier": "^1.18.2",
-    "typescript": "^3.5.2"
+    "typescript": "^3.5.2",
+    "@ethersproject/experimental": "^5.0.1"
   }
 }
